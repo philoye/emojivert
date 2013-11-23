@@ -18,7 +18,6 @@ module Emojivert
       emoji_convert(text, 'google_to_unified')
     end
 
-    # functions to convert unified data into an outgoing format
 
     def unified_to_docomo(text)
       emoji_convert(text, 'unified_to_docomo')
@@ -32,12 +31,15 @@ module Emojivert
     def unified_to_google(text)
       emoji_convert(text, 'unified_to_google')
     end
+
+
     def unified_to_html(text)
       emoji_convert(text, 'unified_to_html')
     end
     def html_to_unified(text)
       emoji_convert(text, 'html_to_unified')
     end
+
 
     def unified_to_name(unified_cp)
       EMOJI_MAPS['unified_to_name'][unified_cp] ? EMOJI_MAPS['unified_to_name'][unified_cp] : '?'
