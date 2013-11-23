@@ -13,7 +13,7 @@ Emoji can be encoded in [several ways](http://www.unicode.org/%7Escherer/emoji4u
 
 This utility lets you convert from one to the other.
 
-I personally ran into this issue because Facebook uses the Google encoding in their Graph API. To get them to show up properly on OSX/iOS, you need to convert them to unified Unicode.
+I personally ran into this issue because Facebook uses the Google encoding in their Graph API. To get them to show up properly on OS X/iOS, you need to convert them to unified Unicode.
 
 
 ## Usage
@@ -22,14 +22,21 @@ The methods you'll need for translation are of the form:
 
     Emojivert.FROMENCODING_to_TOENCODING(string)
 
-Encodings are:
-  * `unified`
-  * `docomo`
-  * `kddi`
-  * `softbank`
-  * `google`
+Conversions are available from the four private use to unified Unicode (and vice versa):
+  * `docomo_to_unified` and `unified_to_docomo`
+  * `kddi_to_unified` and `unified_to_kddi`
+  * `softbank_to_unified` and `unified_to_softbank`
+  * `google_to_unified` and `unified_to_google`
+
+In addition there is an "encoding" for HTML. It creates HTML classes for use with CSS/Images (not supplied, see [caveat](#caveats))
+  * `unified_to_html` and `html_to_unified`
+
+There are also methods for getting the Unicode name from a Unified code point and vice versa.
+  * `unified_to_name` and `name_to_unified`
+
 
 The following shows the basic usage, starting with JSON as an example.
+
     json = '"All work and no play, makes \ud83d\ude0e\ a dull boy \udbba\udf59."'
     => "\"All work and no play, makes \\ud83d\\ude0e\\ a dull boy \\udbba\\udf59.\""
 
@@ -39,7 +46,7 @@ The following shows the basic usage, starting with JSON as an example.
     Emojivert.google_to_unified(str)
     => "All work and no play, makes 😎 a dull boy 💤."
 
-There are also methods for getting the Unicode name from a Unified code point and vice versa.
+Working with Unicode names:
 
     Emojivert.name_to_unified('PILE OF POO')
     => "💩"
@@ -49,9 +56,9 @@ There are also methods for getting the Unicode name from a Unified code point an
 
 ## Caveats
 
-I used the mappings from the [rails-emoji](https://github.com/uken/rails-emoji) project and I didn't check them. The standards may change (or might have already). I personally have only used the Google to Unified translating, your mileage may vary on the rest.
+I used the mappings from the [rails-emoji](https://github.com/uken/rails-emoji) project and I didn't check them. The standards may change (or might have already). I personally have only used the `google_to_unified` translation, your mileage may vary on the rest.
 
-There are methods to convert to an HTML representation of emoji for use with CSS and image sprites. I've included the methods, but not the CSS / images necessary to make use of them. Again, check out the [rails-emoji](https://github.com/uken/rails-emoji) project if you to pursue this. There are several other emoji library that may be useful for rendering emoji with images, see a list below.
+There are methods to convert to an HTML representation of emoji for use with CSS and image sprites. I've included the methods, but not the CSS / images necessary to make use of them. Again, check out the [rails-emoji](https://github.com/uken/rails-emoji) project if you to pursue this. There are several other emoji libraries that may be useful for rendering emoji with images, [see the list below](https://github.com/philoye/emojivert#other-emoji-projects).
 
 
 ## Installation
